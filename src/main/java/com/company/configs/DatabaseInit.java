@@ -6,7 +6,6 @@ import com.company.service.RoleService;
 import com.company.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.HashSet;
@@ -40,9 +39,9 @@ public class DatabaseInit {
             admin.setUsername("admin");
             admin.setPassword("green");
             admin.setName("amanda");
-            admin.setLastName("green");
+            admin.setSurname("green");
             admin.setAge(28);
-            admin.setMail("amanda@gmail.com");
+            admin.setEmail("amanda@gmail.com");
             admin.setRoles(adminRoles);
             userService.addUser(admin);
 
@@ -53,9 +52,9 @@ public class DatabaseInit {
             user.setUsername("user");
             user.setPassword("kelly");
             user.setName("ruby");
-            user.setLastName("kelly");
+            user.setSurname("kelly");
             user.setAge(29);
-            user.setMail("ruby@gmail.com");
+            user.setEmail("ruby@gmail.com");
             user.setRoles(userRoles);
             userService.addUser(user);
         }

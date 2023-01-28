@@ -3,12 +3,10 @@ package com.company.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
-
 @Entity
 @Table(name = "users_table")
 public class User implements UserDetails {
@@ -16,18 +14,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
     @Column(unique=true)
     private String username;
-
     @Column(name = "name")
     private String name;
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "surname")
+    private String surname;
     @Column(name = "age")
     private int age;
-    @Column(name = "mail")
-    private String mail;
+    @Column(name = "email")
+    private String email;
     @Column(name = "password")
     private String password;
     @Column(name = "role")
@@ -49,32 +45,32 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String lastName, int age, String mail) {
+    public User(String name, String surname, int age, String email) {
         this.name = name;
-        this.lastName = lastName;
+        this.surname = surname;
         this.age = age;
-        this.mail = mail;
+        this.email = email;
     }
 
-    public User(String name, String lastName, int age, String mail, String password, String role) {
+    public User(String name, String surname, int age, String email, String password, String role) {
         this.name = name;
-        this.lastName = lastName;
+        this.surname = surname;
         this.age = age;
-        this.mail = mail;
+        this.email = email;
         this.password = password;
         this.role = role;
     }
 
-    public User(String name, String lastName, int age, String mail, String password, Set<Role> roles) {
+    public User(String name, String surname, int age, String email, String password, Set<Role> roles) {
         this.name = name;
-        this.lastName = lastName;
+        this.surname = surname;
         this.age = age;
-        this.mail = mail;
+        this.email = email;
         this.password = password;
         this.roles = roles;
     }
 
-    public void addRoleToUser(Role role) {
+    public void addRoleToUser(Role role) { // ~
         this.roles.add(role);
     }
 
@@ -98,12 +94,11 @@ public class User implements UserDetails {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurname() {
+        return surname;
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public int getAge() {
@@ -114,12 +109,11 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
-
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
@@ -137,7 +131,6 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority(getRole()));
-        //return getRoles();
     }
 
     @Override

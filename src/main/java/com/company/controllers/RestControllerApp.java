@@ -10,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 @RestController
 @RequestMapping("/api")
 public class RestControllerApp {
@@ -58,18 +56,13 @@ public class RestControllerApp {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
-    @PutMapping("/admin/{id}")
-    public ResponseEntity<String> apiEditUser(@PathVariable("id") long id, @RequestBody User user) {
-        userService.updateUser(id, user);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
     @PatchMapping("/admin/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable("id") long id) {
+    public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
         userService.updateUser(id, user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @GetMapping("/user")
     public User showUser(Authentication auth) {
-        return userRepository.getUserByMail(auth.getName()).get();
+        return userRepository.getUserByEmail(auth.getName()).get();
     }
 }

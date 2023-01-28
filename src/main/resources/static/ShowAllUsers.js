@@ -18,9 +18,9 @@ async function showUsersTable() {
                     <tr>
                         <td>${user.id}</td>
                         <td>${user.name}</td>
-                        <td>${user.lastName}</td>
+                        <td>${user.surname}</td>
                         <td>${user.age}</td>
-                        <td>${user.mail}</td>
+                        <td>${user.email}</td>
                         <td>${user.roles.map(role => " " + role.roleName.substring(5))}</td>
                         <td>
                              <button type="button" class="btn btn-success btn btn-info modal-open" id="editbutton"
